@@ -1,3 +1,5 @@
+require "./*"
+
 # TODO: Write documentation for `Fontanyl`
 module Fontanyl
   VERSION = "0.1.0"
