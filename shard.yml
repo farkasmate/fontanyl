@@ -1,0 +1,9 @@
+name: fontanyl
+version: 0.1.0
+
+authors:
+  - Robin Broda <robin@broda.me>
+
+crystal: 0.27.0
+
+license: AGPLv3
