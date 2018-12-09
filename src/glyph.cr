@@ -21,17 +21,21 @@ module Fontanyl
     end
 
     def set_device_width(@device_width_x = @device_width_x, @device_width_y = @device_width_y)
+      self
     end
 
     def set_size(@width = @width, @height = @height)
       @bitmap = BitArray.new(@width*@height)
+      self
     end
 
     def set_offset(@offset_x = @offset_x, @offset_y = @offset_y)
+      self
     end
 
     def set_pixel(x, y, val : Bool)
       bitmap[width*y + x] = val
+      self
     end
   end
 end
