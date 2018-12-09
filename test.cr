@@ -4,13 +4,14 @@ require "./src/fontanyl"
 
 font = Fontanyl::BDF.new("font.bdf")
 
-def gets(font : Fontanyl::Font, msg : String)
-  stra = Array(String).new(17) { "" } # hack
-  msg.chars.each do |c|
-    char = font.get(c)
-    char.bitmap.each_slice(char.width).with_index { |e, ei| e.each { |i| stra[ei] = stra[ei] + (i ? '#' : ' ') }; stra[ei] += "  " }
+def render(bitmap)
+  bitmap.each do |line|
+    line.each { |e| puts e.map { |i| i ? '#' : ' ' }.join }
   end
-  stra.join("\n")
 end
 
-puts gets(font, "TEST")
+puts "Test 1"
+render font.get_bitmap("Test 1")
+
+puts "Linewrap"
+render font.get_bitmap("Linewrap", 4)
