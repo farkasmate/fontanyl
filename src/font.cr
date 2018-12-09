@@ -13,7 +13,7 @@ module Fontanyl
     end
 
     def get(c : Char) : Glyph
-      @charmap[c]
+      @charmap.fetch(c) { |c| raise Exception.new("No glyph for '#{c}'") }
     end
   end
 end
