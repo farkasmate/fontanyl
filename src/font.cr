@@ -38,7 +38,7 @@ module Fontanyl
         end
         if glyph.width > 0
           glyph.bitmap.each_slice(glyph.width).each do |line|
-            bitmap << line + [false]*(glyph.device_width_x - glyph.width)
+            bitmap << line + [false]*Math.max(0, glyph.device_width_x - glyph.width)
           end
         else
           glyph.height.times do |t|
