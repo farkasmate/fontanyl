@@ -16,9 +16,25 @@ dependencies:
 
 ```crystal
 require "fontanyl"
-```
 
-TODO: Write usage instructions here
+
+def render(bitmap)
+  # The generated bitmap is an array of lines-of-text
+  bitmap.each do |line|
+    # Each text line contains several Y-scanlines
+    # as an Array(Bool) bitmap
+    line.each { |e| puts e.map { |i| i ? '#' : ' ' }.join }
+  end
+end
+
+# Load BDF font from file
+font = Fontanyl::BDF.new("font.bdf")
+
+# Generate bitmap of string using loaded font
+# and pass it to our render() function that maps the bits
+# to ascii-art text
+render font.get_bitmap("Hello, World")
+```
 
 ## Development
 
