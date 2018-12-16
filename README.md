@@ -8,6 +8,10 @@ bitmap font parser
 
 - BDF
 
+### Known missing features
+
+- Vertical alignment (i.e. overhang) (rendering)
+
 ## Installation
 
 1. Add the dependency to your `shard.yml`:
