@@ -63,9 +63,9 @@ module Fontanyl
             # puts "#{bdfl[1]} glyphs will follow"
             glyphs_expected = bdfl[1].to_u32
           when "STARTCHAR"
-            char = bdfl[1].to_i(16).chr
-            # puts "got #{bdfl[1]} -> #{char}"
+            # PostScript name of the glyph
           when "ENCODING"
+            char = bdfl[1].to_i.chr
             # decimal code point of glyph in the font
           when "SWIDTH"
             # we don't do scalable glyphs in this household
