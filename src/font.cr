@@ -48,8 +48,8 @@ module Fontanyl
       end
 
       wrap = wrap == 0 ? char_count : wrap
-      retmap = Array(Array(Array(Bool))).new((char_count/wrap).round) { Array(Array(Bool)).new(max_height) { Array(Bool).new } }
-      bitmap.each_slice(max_height).with_index { |e, chari| e.map_with_index { |l, li| l.map { |i| retmap[chari/wrap][li] << i } } }
+      retmap = Array(Array(Array(Bool))).new((char_count/wrap).round.to_i) { Array(Array(Bool)).new(max_height) { Array(Bool).new } }
+      bitmap.each_slice(max_height).with_index { |e, chari| e.map_with_index { |l, li| l.map { |i| retmap[(chari/wrap).to_i][li] << i } } }
       retmap # .map { |e| e.reject { |s| s.size == 0 } }.reject { |a| a.size == 0 }
     end
   end
