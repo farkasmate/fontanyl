@@ -9,11 +9,15 @@ module Fontanyl
     property final : Bool
 
     def initialize(fontpath)
+      initialize(File.new(fontpath))
+    end
+
+    def initialize(io : IO)
       super()
-      @data = File.read_lines(fontpath).map(&.split)
+      @data = io.gets_to_end.split("\n", remove_empty: true).map(&.split)
       @final = false
 
-      raise Exception.new("Not a BDF file: #{fontpath}") if @data.first.first != "STARTFONT"
+      raise Exception.new("Not a BDF file") if @data.first.first != "STARTFONT"
 
       glyph = Glyph.new
       char = '\0'
