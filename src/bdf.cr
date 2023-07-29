@@ -1,8 +1,6 @@
 require "./font"
 require "./glyph"
 
-require "big/big_int"
-
 module Fontanyl
   class BDF < Font
     property data : Array(Array(String))
@@ -83,9 +81,9 @@ module Fontanyl
           when "ENDCHAR"
             # puts "have #{char}"
             bitmap.each.with_index do |line, index|
-              bits = line.size * 4 - 1
+              bits = line.hexbytes.map { |byte| 7.downto(0).map { |i| byte.bit(i) } }.to_a.flatten
               glyph.width.times do |gwt|
-                glyph.set_pixel(gwt, index, BigInt.new(line, 16).bit(bits - gwt) == 1)
+                glyph.set_pixel(gwt, index, bits[gwt] == 1)
               end
             end
             @charmap[char] = glyph
